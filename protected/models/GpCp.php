@@ -63,8 +63,8 @@ class GpCp extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'l_name' => 'L Name',
-			'l_type' => 'L Type',
+			'l_name' => 'cp名',
+			'l_type' => 'cpid',
 		);
 	}
 
@@ -84,6 +84,12 @@ class GpCp extends CActiveRecord
 		$criteria->compare('l_type',$this->l_type,true);
 
 		return new CActiveDataProvider($this, array(
+				'pagination'=>array(
+						'pageSize'=>20,//设置每页显示20条
+				),
+				'sort'=>array(
+						'defaultOrder'=>'l_type', //设置默认排序是createTime倒序
+				),
 			'criteria'=>$criteria,
 		));
 	}

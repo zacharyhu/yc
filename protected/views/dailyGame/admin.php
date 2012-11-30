@@ -9,6 +9,8 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'查看每日充值数据', 'url'=>array('/dailyCash/admin')),
+	array('label'=>'游戏ID配置', 'url'=>array('/gpGameCfg/admin')),
+	array('label'=>'游戏点平台来源配置', 'url'=>array('/gpGameSourceCfg/admin')),
 	//array('label'=>'Create DailyGame', 'url'=>array('create')),
 );
 
@@ -54,7 +56,9 @@ or <b>=</b>)  如 在日期框输入'<121110'敲回车搜索12年11月10 以前�
 		'l_total_num',
 		'l_user_num',		
 		'l_avg_num',
-		'l_source',
+		//'l_source',
+        //l_source 使用cfg配置列表来源
+        array('name'=>'l_source','value'=>'GpGameSourceCfg::model()->getGpSourceName($data->l_source)','filter'=>GpGameSourceCfg::model()->getGpSourceList()),
 		//'l_cash_sum',
 		//只允许查看
 		//array(

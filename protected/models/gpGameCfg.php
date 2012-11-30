@@ -95,4 +95,5 @@ class gpGameCfg extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
 }

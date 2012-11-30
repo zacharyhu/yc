@@ -3,9 +3,9 @@
 /* @var $model GpCp */
 
 $this->breadcrumbs=array(
-	'Gp Cps'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	//'Gp Cps'=>array('index'),
+	//$model->id=>array('view','id'=>$model->id),
+	'更新',
 );
 
 $this->menu=array(

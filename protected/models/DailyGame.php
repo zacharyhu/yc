@@ -116,6 +116,7 @@ class DailyGame extends CActiveRecord
 	}
 	public function getGameNameList()
 	{
+
 		$gameListArr = DailyGame::model()->findAll(
 		         //取游戏名的唯一值
 		         array(

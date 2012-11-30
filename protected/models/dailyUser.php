@@ -1,22 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "gp_data_daily_cash".
+ * This is the model class for table "gp_data_daily_user".
  *
- * The followings are the available columns in table 'gp_data_daily_cash':
+ * The followings are the available columns in table 'gp_data_daily_user':
  * @property integer $id
- * @property string $l_date
- * @property integer $l_cash_sum
- * @property string $l_total_num
- * @property string $l_avg
- * @property integer $l_type
+ * @property integer $l_date
+ * @property integer $l_active
+ * @property integer $l_new_num
+ * @property integer $l_new_gamer
+ * @property integer $l_source
  */
-class DailyCash extends CActiveRecord
+class dailyUser extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return DailyCash the static model class
+	 * @return dailyUser the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -28,7 +28,7 @@ class DailyCash extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gp_data_daily_cash';
+		return 'gp_data_daily_user';
 	}
 
 	/**
@@ -39,13 +39,11 @@ class DailyCash extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('l_date, l_cash_sum, l_total_num, l_avg, l_type', 'required'),
-			array('l_cash_sum, l_type', 'numerical', 'integerOnly'=>true),
-			array('l_date, l_avg', 'length', 'max'=>10),
-			array('l_total_num', 'length', 'max'=>10),
+			array('l_date, l_active, l_new_num, l_new_gamer, l_source', 'required'),
+			array('l_date, l_active, l_new_num, l_new_gamer, l_source', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, l_date, l_cash_sum, l_total_num, l_type', 'safe', 'on'=>'search'),
+			array('id, l_date, l_active, l_new_num, l_new_gamer, l_source', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,10 +66,10 @@ class DailyCash extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'l_date' => '日期',
-			'l_cash_sum' => '总金额',
-			'l_total_num' => '总人数',
-			'l_avg' => '人均',
-			'l_type' => '充值来源',
+			'l_active' => '当天活跃人数',
+			'l_new_num' => '新用户数',
+			'l_new_gamer' => '新玩家数',
+			'l_source' => '平台来源',
 		);
 	}
 
@@ -86,20 +84,20 @@ class DailyCash extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		//$criteria->compare('id',$this->id);
-		$criteria->compare('l_date',$this->l_date,true);
-		$criteria->compare('l_cash_sum',$this->l_cash_sum);
-		$criteria->compare('l_total_num',$this->l_total_num,true);
-		$criteria->compare('l_avg',$this->l_avg,true);
-		$criteria->compare('l_type',$this->l_type);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('l_date',$this->l_date);
+		$criteria->compare('l_active',$this->l_active);
+		$criteria->compare('l_new_num',$this->l_new_num);
+		$criteria->compare('l_new_gamer',$this->l_new_gamer);
+		$criteria->compare('l_source',$this->l_source);
 
 		return new CActiveDataProvider($this, array(
-			'pagination'=>array(
-				'pageSize'=>20,//设置每页显示20条
-			),
-			'sort'=>array(
-					'defaultOrder'=>'l_date DESC', //设置默认排序是createTime倒序
-			),
+				'pagination'=>array(
+						'pageSize'=>20,//设置每页显示20条
+				),
+				'sort'=>array(
+						'defaultOrder'=>'l_date DESC', //设置默认排序是createTime倒序
+				),
 			'criteria'=>$criteria,
 		));
 	}

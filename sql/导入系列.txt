@@ -1,0 +1,9 @@
+#######=====导入当天用户活跃数据=====
+insert into gp_platform.gp_data_daily_user(l_date,l_active,l_new_num,l_new_gamer,l_source)
+select l_date,active,newnum,newnum_play,'201' from
+datacenter.dailyreport_user_activity where l_date=DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'%y%m%d');
+
+#####=====导入用户历史充值=============
+insert into gp_platform.gp_recharge_his(vc_stb_id,member_id,l_money,l_date,l_time,l_type)
+ select vc_stb_id,member_id,l_money,l_date,l_time,l_type 
+from datacenter.gp_recharge_his where l_date=DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'%y%m%d');

@@ -1,22 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "gp_data_daily_cash".
+ * This is the model class for table "gp_game_source_cfg".
  *
- * The followings are the available columns in table 'gp_data_daily_cash':
+ * The followings are the available columns in table 'gp_game_source_cfg':
  * @property integer $id
- * @property string $l_date
- * @property integer $l_cash_sum
- * @property string $l_total_num
- * @property string $l_avg
- * @property integer $l_type
+ * @property integer $l_source_id
+ * @property string $l_source_name
  */
-class DailyCash extends CActiveRecord
+class GpGameSourceCfg extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return DailyCash the static model class
+	 * @return GpGameSourceCfg the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -28,7 +25,7 @@ class DailyCash extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gp_data_daily_cash';
+		return 'gp_game_source_cfg';
 	}
 
 	/**
@@ -39,13 +36,12 @@ class DailyCash extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('l_date, l_cash_sum, l_total_num, l_avg, l_type', 'required'),
-			array('l_cash_sum, l_type', 'numerical', 'integerOnly'=>true),
-			array('l_date, l_avg', 'length', 'max'=>10),
-			array('l_total_num', 'length', 'max'=>10),
+			array('l_source, l_source_name', 'required'),
+			array('l_source', 'numerical', 'integerOnly'=>true),
+			array('l_source_name', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, l_date, l_cash_sum, l_total_num, l_type', 'safe', 'on'=>'search'),
+			array('id, l_source, l_source_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,11 +63,8 @@ class DailyCash extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'l_date' => '日期',
-			'l_cash_sum' => '总金额',
-			'l_total_num' => '总人数',
-			'l_avg' => '人均',
-			'l_type' => '充值来源',
+			'l_source' => '平台编号',
+			'l_source_name' => '平台名称',
 		);
 	}
 
@@ -86,21 +79,22 @@ class DailyCash extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		//$criteria->compare('id',$this->id);
-		$criteria->compare('l_date',$this->l_date,true);
-		$criteria->compare('l_cash_sum',$this->l_cash_sum);
-		$criteria->compare('l_total_num',$this->l_total_num,true);
-		$criteria->compare('l_avg',$this->l_avg,true);
-		$criteria->compare('l_type',$this->l_type);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('l_source',$this->l_source);
+		$criteria->compare('l_source_name',$this->l_source_name,true);
 
 		return new CActiveDataProvider($this, array(
-			'pagination'=>array(
-				'pageSize'=>20,//设置每页显示20条
-			),
-			'sort'=>array(
-					'defaultOrder'=>'l_date DESC', //设置默认排序是createTime倒序
-			),
 			'criteria'=>$criteria,
 		));
+	}
+	public function getGpSourceList()
+	{
+		$gpSourceListArr = GpGameSourceCfg::model()->findAll();
+		return CHtml::listData($gpSourceListArr, 'l_source', 'l_source_name');
+	}
+	public function getGpSourceName($l_source)
+	{
+		$gpSourceNameArr = GpGameSourceCfg::model()->findByAttributes(array('l_source'=>$l_source));
+		return $gpSourceNameArr->l_source_name;
 	}
 }

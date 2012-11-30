@@ -8,6 +8,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'查看每日游戏点消耗数据', 'url'=>array('/dailyGame/admin')),
+	array('label'=>'配置cp列表', 'url'=>array('/gpCp/admin')),
 	//array('label'=>'List DailyCash', 'url'=>array('index')),
 	//array('label'=>'Create DailyCash', 'url'=>array('create')),
 );

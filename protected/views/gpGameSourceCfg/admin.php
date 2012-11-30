@@ -1,16 +1,15 @@
 <?php
-/* @var $this GpCpController */
-/* @var $model GpCp */
+/* @var $this GpGameSourceCfgController */
+/* @var $model GpGameSourceCfg */
 
 $this->breadcrumbs=array(
-	//'Gp Cps'=>array('index'),
-	'cp管理',
+	'Gp Game Source Cfgs'=>array('index'),
+	'Manage',
 );
 
 $this->menu=array(
-	//array('label'=>'List GpCp', 'url'=>array('index')),
-	array('label'=>'新建 Cp', 'url'=>array('create')),
-	array('label'=>'每日充值', 'url'=>array('/dailyCash/admin')),
+	array('label'=>'List GpGameSourceCfg', 'url'=>array('index')),
+	array('label'=>'Create GpGameSourceCfg', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -19,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('gp-cp-grid', {
+	$.fn.yiiGridView.update('gp-game-source-cfg-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -27,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Cp id管理</h1>
+<h1>Manage Gp Game Source Cfgs</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -42,13 +41,13 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'gp-cp-grid',
+	'id'=>'gp-game-source-cfg-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		//'id',
-		'l_name',
-		'l_type',
+		'id',
+		'l_source',
+		'l_source_name',
 		array(
 			'class'=>'CButtonColumn',
 		),

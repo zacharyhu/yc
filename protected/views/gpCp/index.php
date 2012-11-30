@@ -3,12 +3,12 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Gp Cps',
+	'cp 列表',
 );
 
 $this->menu=array(
-	array('label'=>'Create GpCp', 'url'=>array('create')),
-	array('label'=>'Manage GpCp', 'url'=>array('admin')),
+	array('label'=>'创建 GpCp', 'url'=>array('create')),
+	array('label'=>'管理 GpCp', 'url'=>array('admin')),
 );
 ?>
 
