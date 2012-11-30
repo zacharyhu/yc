@@ -87,13 +87,13 @@ class GpCp extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	//显示type种类
+	//鑾峰彇l_type鍒楄〃
 	public function getCpList()
 	{
 		$cpList = GpCp::model()->findAll();
 		return CHtml::listData($cpList, 'l_type','l_name' );
 	}
-	//通过查找type来显示充值类别
+	//鑾峰彇l_type_name
 	public function getCpName($l_type)
 	{
 		$cpNameArr = GpCp::model()->findByAttributes(array('l_type'=>$l_type));
