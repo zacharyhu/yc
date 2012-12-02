@@ -9,6 +9,9 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'查看每日充值数据', 'url'=>array('/dailyCash/admin')),
+	array('label'=>'查看每日游戏点消耗数据', 'url'=>array('/dailyGame/admin')),
+	array('label'=>'查看每日会员数据', 'url'=>array('/dailyVip/admin')),
+	array('label'=>'查看每日用户活跃数据', 'url'=>array('/dailyUser/admin')),
 	array('label'=>'游戏ID配置', 'url'=>array('/gpGameCfg/admin')),
 	array('label'=>'游戏点平台来源配置', 'url'=>array('/gpGameSourceCfg/admin')),
 	//array('label'=>'Create DailyGame', 'url'=>array('create')),
@@ -35,7 +38,7 @@ $('.search-form form').submit(function(){
 or <b>=</b>)  如 在日期框输入'<121110'敲回车搜索12年11月10 以前数据
 </p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('高级搜索','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,

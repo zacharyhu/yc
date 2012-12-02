@@ -7,7 +7,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
+	array('label'=>'查看每日充值数据', 'url'=>array('/dailyCash/admin')),
 	array('label'=>'查看每日游戏点消耗数据', 'url'=>array('/dailyGame/admin')),
+	array('label'=>'查看每日会员数据', 'url'=>array('/dailyVip/admin')),
+	array('label'=>'查看每日用户活跃数据', 'url'=>array('/dailyUser/admin')),
 	array('label'=>'配置cp列表', 'url'=>array('/gpCp/admin')),
 	//array('label'=>'List DailyCash', 'url'=>array('index')),
 	//array('label'=>'Create DailyCash', 'url'=>array('create')),
@@ -30,8 +33,8 @@ $('.search-form form').submit(function(){
 <h1>每日充值数据</h1>
 
 <p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+可以使用下列比较符号进行筛选 (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+or <b>=</b>)  如 在日期框输入'<121110'敲回车搜索12年11月10 以前数据
 </p>
 
 <?php echo CHtml::link('高级搜索','#',array('class'=>'search-button')); ?>

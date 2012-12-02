@@ -33,6 +33,7 @@
 				array('label'=>'每日充值', 'url'=>array('/dailyCash/admin')),
 				array('label'=>'每日游戏点消耗', 'url'=>array('/dailyGame/admin')),
 				array('label'=>'每日用户活跃度', 'url'=>array('/dailyUser/admin')),
+				array('label'=>'每日会员数据', 'url'=>array('/dailyVip/admin')),
 				array('label'=>'查询用户历史充值', 'url'=>array('/gpRechargeHis/admin')),
 				array('label'=>'登入', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'登出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)

@@ -98,7 +98,7 @@ class DailyCash extends CActiveRecord
 				'pageSize'=>20,//设置每页显示20条
 			),
 			'sort'=>array(
-					'defaultOrder'=>'l_date DESC', //设置默认排序是createTime倒序
+					'defaultOrder'=>'l_date DESC,l_type desc', //设置默认排序是createTime倒序
 			),
 			'criteria'=>$criteria,
 		));

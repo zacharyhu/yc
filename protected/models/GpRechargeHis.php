@@ -42,11 +42,12 @@ class GpRechargeHis extends CActiveRecord
 			array('vc_stb_id, member_id, l_money, l_date, l_time, l_type', 'required'),
 			array('l_money', 'numerical', 'integerOnly'=>true),
 			array('vc_stb_id', 'length', 'max'=>128),
-			array('member_id, l_date, l_time', 'length', 'max'=>10),
-			array('l_type,l_money', 'length', 'max'=>5),
+			array('member_id', 'length', 'max'=>10),
+			array('l_date, l_time', 'length', 'max'=>7),
+			array('l_type,l_money', 'length', 'max'=>4),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('vc_stb_id, member_id, l_money, l_date, l_time, l_type', 'safe', 'on'=>'search'),
+			array('vc_stb_id, member_id, l_money, l_date, l_type', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -95,8 +96,11 @@ class GpRechargeHis extends CActiveRecord
 		$criteria->compare('l_type',$this->l_type,true);
 
 		return new CActiveDataProvider($this, array(
+				'sort'=>array(
+						'defaultOrder'=>'l_date DESC,l_time desc', //设置默认排序是createTime倒序
+				),
 				'pagination'=>array(
-						'pageSize'=>30,//设置每页显示20条
+						'pageSize'=>30,//设置每页显示30条
 				),
 			'criteria'=>$criteria,
 		));

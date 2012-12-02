@@ -7,3 +7,7 @@ datacenter.dailyreport_user_activity where l_date=DATE_FORMAT(DATE_SUB(CURDATE()
 insert into gp_platform.gp_recharge_his(vc_stb_id,member_id,l_money,l_date,l_time,l_type)
  select vc_stb_id,member_id,l_money,l_date,l_time,l_type 
 from datacenter.gp_recharge_his where l_date=DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'%y%m%d');
+
+####======导入vip数据=================
+insert into  gp_platform.gp_data_daily_vip(l_date,l_mon_points,l_mon_num,l_coin_points,l_coin_num,l_ingame_num,l_incash_num,l_cash_sum)
+select * from datacenter.dailyreport_vip_data where l_date=DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 DAY),'%y%m%d')
