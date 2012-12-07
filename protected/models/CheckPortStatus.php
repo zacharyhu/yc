@@ -66,11 +66,11 @@ class CheckPortStatus extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'item_id' => 'Item',
-			'item_name' => 'Item Name',
-			'check_status' => 'Check Status',
-			'check_last_time' => 'Check Last Time',
-			'failed_times' => 'Failed Times',
+			'item_id' => '监控项ID',
+			'item_name' => '对应游戏名',
+			'check_status' => '端口存活状态',
+			'check_last_time' => '最后更新时间',
+			'failed_times' => '失败次数',
 		);
 	}
 
@@ -93,6 +93,12 @@ class CheckPortStatus extends CActiveRecord
 		$criteria->compare('failed_times',$this->failed_times);
 
 		return new CActiveDataProvider($this, array(
+				'pagination'=>array(
+						'pageSize'=>30,//设置每页显示30条
+				),
+				'sort'=>array(
+						'defaultOrder'=>'check_status,failed_times desc', //设置默认排序是createTime倒序
+				),
 			'criteria'=>$criteria,
 		));
 	}
