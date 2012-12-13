@@ -3,15 +3,24 @@
 #the local monitor scripts with all items
 
 
-ROOTDIR=`pwd`
-script_process="mon_process.sh"
-script_process_list="get_process_list.sh"
+
+#only need to config the local process id in each check script
+
 PROCESS_ID=(
 	2001
 	2002
 	)
-desc2001="java,kado"
-desc2002="java,quartz"
+
+
+
+
+
+#########################################no need to config
+ROOTDIR=`pwd`
+script_process="mon_process.sh"
+script_process_list="get_process_list.sh"
+#desc2001="java,kado"
+#desc2002="java,quartz"
 
 
 #echo ${ROOTDIR}"/"${script_process}

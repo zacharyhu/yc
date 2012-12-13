@@ -83,8 +83,8 @@ local mysql = require "resty.mysql"
                 return
             end
 
-            ngx.say(res.affected_rows, " rows inserted into table process ",
-                    "(last insert id: ", res.insert_id, ")")
+            --ngx.say(res.affected_rows, " rows inserted into table process ",
+              --      "(last insert id: ", res.insert_id, ")")
 
            -- res, err, errno, sqlstate =
            --     db:query("select * from monitor_check_process_status  order by id asc")
