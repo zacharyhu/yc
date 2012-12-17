@@ -23,7 +23,7 @@ cpu=`echo $ps_status|awk '{print $2}' `
 mem=`echo $ps_status|awk '{print $3}' `
 ES_num=`netstat -np | grep $pid"/"|grep ES -c`
 thread_num=`ps -mp $pid |wc -l`
-echo "the thread num is " $thread_num " and it's cpu : "$cpu" mem: "$mem "ES NUM IS : "$ES_num
+#echo "the thread num is " $thread_num " and it's cpu : "$cpu" mem: "$mem "ES NUM IS : "$ES_num
 else 
 echo "errrrrrrrrrrrrrrrrrrro...."
 pid="-1"
@@ -31,8 +31,8 @@ cpu="0"
 mem="0"
 ES_num="0"
 thread_num="0"
-echo "the  pid is "$pid " thread num is " $thread_num " and it's cpu : "$cpu" mem: "$mem "ES NUM IS : "$ES_num
+#echo "the  pid is "$pid " thread num is " $thread_num " and it's cpu : "$cpu" mem: "$mem "ES NUM IS : "$ES_num
 fi
 
 
-curl "http://10.48.179.115:88/process_check?id=${ID}&pid=${pid}&pcpu=${cpu}&pmem=${mem}&pnum=${thread_num}&pconum=${ES_num}"
+curl "${3}?ctype=process&id=${ID}&pid=${pid}&pcpu=${cpu}&pmem=${mem}&pnum=${thread_num}&pconum=${ES_num}"

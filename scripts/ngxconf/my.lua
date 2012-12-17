@@ -448,11 +448,11 @@ end
 
 function connect(self,opts )
 local opts = {
-                        host = "127.0.0.1",
+                        host = "10.48.179.112",
                         port = 3306,
-                        database = "ngx_test",
-                        user = "ngx_test",
-                        password = "ngx_test",
+                        database = "gp_platform",
+                        user = "dc",
+                        password = "dc",
                         max_packet_size = 1024 * 1024
                 }
     local sock = self.sock
@@ -823,6 +823,16 @@ function query(self, query)
     return self:read_result()
 end
 
+---20121217 modifiled by zacharyhu
+function query_insert(self, tablename ,set_sql)
+    local sql_insert = "insert into "..tablename.." "..set_sql 
+    local bytes, err = self:send_query(sql_insert)
+    if not bytes then
+        return nil, "failed to send query: " .. err
+    end
+
+    return self:read_result()
+end
 
 function set_compact_arrays(self, value)
     self.compact = value
