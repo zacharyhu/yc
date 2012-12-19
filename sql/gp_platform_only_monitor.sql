@@ -520,3 +520,38 @@ INSERT INTO `monitor_moniter_process_list` VALUES (3, 2003, 'vps19旧平台gatew
 INSERT INTO `monitor_moniter_process_list` VALUES (4, 2004, 'vps19旧平台kernel', 'java,quartz', 'java');
 INSERT INTO `monitor_moniter_process_list` VALUES (5, 2005, 'vps20旧平台gateway', 'java,kado', 'java');
 INSERT INTO `monitor_moniter_process_list` VALUES (6, 2006, 'vps20旧平台kernel', 'java,quartz', 'java');
+
+
+
+CREATE TABLE `monitor_moniter_warn_cfg` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `item_name` varchar(10) NOT NULL COMMENT '报警项',
+  `threshold` varchar(20) NOT NULL COMMENT '阀值',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+-- 
+-- 导出表中的数据 `monitor_moniter_warn_cfg`
+-- 
+
+INSERT INTO `monitor_moniter_warn_cfg` VALUES (1, 'cpu_sy', '70');
+
+-- --------------------------------------------------------
+
+-- 
+-- 表的结构 `monitor_moniter_warn_status`
+-- 
+
+CREATE TABLE `monitor_moniter_warn_status` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `host_id` int(10) NOT NULL COMMENT '主机id',
+  `item_name` varchar(10) NOT NULL COMMENT '报警项',
+  `warn_value` varchar(10) NOT NULL COMMENT '报警值',
+  `last_check_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后提示时间',
+  `warning_times` int(11) NOT NULL,
+  `cache_key` varchar(20) NOT NULL COMMENT 'redis key',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- 
+-- 导出表中的数据 `monitor_moniter_warn_status`

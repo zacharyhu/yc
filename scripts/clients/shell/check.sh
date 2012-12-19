@@ -64,7 +64,7 @@ fi
 
 
 if [ $checkmem -eq "1" ];then
-curl $moniter_url"?ctype=mem&id="$hostid"&use="$mem_use"&free="$mem_free"&cache="$mem_cache"&total="mem_total"&swap="$mem_swap
+curl $moniter_url"?ctype=mem&id="$hostid"&use="$mem_use"&free="$mem_free"&cache="$mem_cache"&total="$mem_total"&swap="$mem_swap
 else
 echo "mem off"
 r
